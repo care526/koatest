@@ -5,8 +5,6 @@ const logger = require('koa-logger');
 const static = require('koa-static');
 const router = require('../routers');
 
-console.log(__dirname);
-
 module.exports = function middlewaresInit(app) {
   app
     .use(bodyparser({

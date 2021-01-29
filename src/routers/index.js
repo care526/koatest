@@ -1,12 +1,10 @@
 const Router = require('@koa/router');
-const { list } = require('../controllers/user');
+const { User } = require('../controllers/user');
 
 const router = new Router();
 
-router.get('/a', async (ctx, next) => {
-  ctx.body = 'a'
-})
-router.get('/user/list', list);
+router.get('/user/list', User.list);
+router.get('/user/add', User.add);
 
 router.prefix('/api');
 

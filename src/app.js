@@ -13,6 +13,6 @@ app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 });
 
-console.log('restart1');
+console.log('restart');
 
-app.listen(3000);
+app.listen(8080);
