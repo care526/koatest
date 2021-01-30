@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "nodemon --watch src/**/* -e ts,tsx --exec ts-node ./src/app.ts",
     "dev": "npx ts-node-dev ./src/app.ts",
-    "build": "rm -rf dist/* && tsc",
-    "serve": "nodemon --watch src/**/* -e ts,tsx --exec ts-node ./src/app.ts"
+    "build": "rm -rf dist/* && tsc"
   },
   "keywords": [],
   "author": "",
