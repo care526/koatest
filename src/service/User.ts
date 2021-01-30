@@ -10,6 +10,13 @@ export class User {
     );
     return rows[0];
   }
+
+  public async create(uid: number, uname: string) {
+    const [ rows ] = await MysqlPool.query<OkPacket>(
+      `INSERT INTO user (uid, uname) VALUES (${uid}, '${uname}')`
+    );
+    return rows.warningCount;
+  }
 }
 
 export const UserService = new User();

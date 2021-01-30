@@ -31,16 +31,22 @@ class User {
     ctx: Koa.ParameterizedContext,
     next: Koa.Next
   ) {
+    const resBody = new CreateResBodyData<boolean>(ctx);
     const { uid, uname } = ctx.request.body;
-    try {
-      const [ rows ] = await MysqlPool.query<OkPacket>(
-        `INSERT INTO user (uid, uname) VALUES (${uid}, '${uname}')`
-      );
-      ctx.body = rows.warningCount;
-      // ctx.body = '添加成功';
-    } catch (error) {
-      ctx.body = error;
+    const result = await UserService.create(
+      uid, uname
+    )
+
+    if (!result) {
+      resBody.data = !result;
+      resBody.message = '创建成功';
+    } else {
+      resBody.success = false;
+      resBody.code = ResCodeStatus.SERVICEERROR.desc
     }
+
+    resBody.send();
   }
 }
+
 export const UserController = new User();
